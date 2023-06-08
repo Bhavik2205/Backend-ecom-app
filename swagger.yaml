@@ -1,0 +1,80 @@
+swagger: "2.0"
+info:
+  title: User API
+  description: A RESTful API for managing users
+  version: "1.0"
+paths:
+  /api/v1/createUser:
+    post:
+      summary: Creates a new user
+      consumes:
+        - application/json
+      parameters:
+        - name: user
+          in: body
+          schema:
+            type: object
+            properties:
+              username:
+                  type: string
+              email:
+                  type: string
+              password:
+                  type: string
+              phoneNumber:
+                  type: string
+              userType:
+                 type: array
+                 items:
+                  type: string
+              isActive:
+                  type: boolean
+          required: true
+          description: The user data
+      responses:
+        "201":
+          description: User created successfully
+        "400":
+          description: Invalid input provided
+  /api/v1/login:
+    post:
+      summary: user login
+      consumes:
+        - application/json
+      parameters:
+        - name: user
+          in: body
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+          required: true
+          description: The user data
+      responses:
+        "201":
+          description: Login Successfully
+        "400":
+          description: Invalid User
+  /api/v1/checkUserName:
+    post:
+      summary: check username
+      consumes:
+        - application/json
+      parameters:
+        - name: user
+          in: body
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+          required: true
+          description: The user data
+      responses:
+        "201":
+          description: Username Available
+        "400":
+          description: Username is already exist
